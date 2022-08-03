@@ -31,7 +31,7 @@ class PenilaianController extends Controller
      */
     public function create()
     {
-        return view('penilaian');
+        return view('penilaian2');
     }
 
     /**
@@ -55,6 +55,9 @@ class PenilaianController extends Controller
         Alert::success('Berhasil', 'Penilaian terkirim');
 
         Penilaian::create($data);
+
+        
+        Alert::success('Berhasil', 'Penilaian terkirim');
 
         return redirect()->route('penilaian.create');
     }

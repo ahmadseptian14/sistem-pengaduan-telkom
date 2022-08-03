@@ -23,7 +23,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
-                                            <th>NIK</th>
+                                            {{-- <th>NIK</th> --}}
                                             <th>No.Telepon</th>
                                             <th>Email</th>
                                             <th>Role</th>
@@ -33,7 +33,7 @@
                                         @forelse ($petugass as $petugas)
                                             <tr>
                                                 <td>{{$petugas->name}}</td>
-                                                <td>{{$petugas->nik}}</td>
+                                                {{-- <td>{{$petugas->nik}}</td> --}}
                                                 <td>{{$petugas->phone}}</td>
                                                 <td>{{$petugas->email}}</td>
                                                 <td>{{$petugas->roles}}</td>

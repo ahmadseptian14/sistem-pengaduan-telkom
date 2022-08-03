@@ -30,12 +30,12 @@
                                         <input type="text" name="name" class="form-control" required value="{{$customer->name}}">
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                {{-- <div class="col-md-12">
                                     <div class="form-group">
                                         <label>NIK</label>
                                         <input type="text" name="nik" class="form-control" required value="{{$customer->nik}}">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>No.Telepon</label>

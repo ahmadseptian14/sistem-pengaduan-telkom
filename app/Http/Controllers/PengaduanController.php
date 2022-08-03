@@ -34,7 +34,7 @@ class PengaduanController extends Controller
      */
     public function create()
     {
-        
+        return view('input-pengaduan');
     }
 
     /**
@@ -61,6 +61,8 @@ class PengaduanController extends Controller
         Alert::success('Berhasil', 'Pengaduan terkirim');
 
         Pengaduan::create($data);
+
+
 
         return redirect()->route('home');
 
@@ -137,9 +139,17 @@ class PengaduanController extends Controller
             return $pdf->download('laporan-semua-pengaduan.pdf');
 
         }
+       
+    }
 
-       
-       
+
+    public function pengaduan_pelanggan()
+    {
+        $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+
+        return view('pengaduan', [
+            'pengaduans' => $pengaduans
+        ]);
     }
 
 

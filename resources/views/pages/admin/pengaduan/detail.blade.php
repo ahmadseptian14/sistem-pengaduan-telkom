@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div>
                                 <h4>Nama : {{$pengaduan->name}}</h4>
-                                <h4>NIK : {{$pengaduan->user_nik}}</h4>
+                                {{-- <h4>NIK : {{$pengaduan->user_nik}}</h4> --}}
                                 <h4>No.Telepon : {{$pengaduan->user->phone}}</h4>
                                 <h4>Tanggal : {{ $pengaduan->created_at->format('l, d F Y - H:i:s') }}</h4>
                                 <h4>Status : 

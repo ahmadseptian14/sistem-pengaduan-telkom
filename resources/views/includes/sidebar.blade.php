@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <img src="{{asset('/assets/img/logo-telkom.png')}}" alt="">
     <!-- Divider -->
@@ -14,7 +14,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{route('pengaduan.index')}}">
             <i class="fas fa-fw fa-list"></i>
-            <span>Pengaduan</span></a>
+            <span>Lihat Data Pengaduan</span></a>
     </li>
 
     <li class="nav-item active">
@@ -26,20 +26,19 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{route('penilaian.index')}}">
             <i class="fas fa-fw fa-list"></i>
-            <span>Penilaian</span></a>
+            <span>Lihat Data Penilaian</span></a>
     </li>
 
-
-    <li class="nav-item active">
+    {{-- <li class="nav-item active">
         <a class="nav-link" href="{{route('petugas.index')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Petugas</span></a>
-    </li>
+            <span>Kelola Data Petugas</span></a>
+    </li> --}}
 
     <li class="nav-item active">
         <a class="nav-link" href="{{route('customer.index')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Customer</span></a>
+            <span>Kelola Data Pelanggan</span></a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->

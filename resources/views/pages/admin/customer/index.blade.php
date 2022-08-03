@@ -21,7 +21,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
-                                            <th>NIK</th>
+                                            {{-- <th>NIK</th> --}}
                                             <th>No.Telepon</th>
                                             <th>Email</th>
                                             <th>Aksi</th>
@@ -31,7 +31,7 @@
                                         @forelse ($customers as $customer)
                                             <tr>
                                                 <td>{{$customer->name}}</td>
-                                                <td>{{$customer->nik}}</td>
+                                                {{-- <td>{{$customer->nik}}</td> --}}
                                                 <td>{{$customer->phone}}</td>
                                                 <td>{{$customer->email}}</td>
                                                 <td>

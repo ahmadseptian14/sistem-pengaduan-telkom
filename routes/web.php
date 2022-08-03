@@ -25,18 +25,21 @@ use Illuminate\Support\Facades\Route;
 // Halaman Utama
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Penilaian
-Route::get('/penilaian', [PenilaianController::class, 'create'])->name('penilaian.create');
-Route::post('/create-penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
 
 
-Route::middleware(['auth', 'user'])->group(function () {
-    Route::post('/input-pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
+    Route::get('/input-pengaduan', [PengaduanController::class, 'create'])->name('pengaduan.create');
+    Route::get('/pengaduan-pelanggan', [PengaduanController::class, 'pengaduan_pelanggan'])->name('pengaduan.pelanggan');
+
+    // Penilaian
+    Route::get('/penilaian', [PenilaianController::class, 'create'])->name('penilaian.create');
+    Route::post('/create-penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
 
 });
 
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function() {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
@@ -56,7 +59,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function() {
     Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
     Route::get('create-petugas', [PetugasController::class, 'create'])->name('petugas.create');
     Route::post('/create-petugas', [PetugasController::class, 'store'])->name('petugas.store');
-    
+
     // customer
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('/edit-customer/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
@@ -65,7 +68,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function() {
 
     //Penialain
     Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
-    
 });
 
 
