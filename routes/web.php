@@ -31,9 +31,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
     Route::get('/input-pengaduan', [PengaduanController::class, 'create'])->name('pengaduan.create');
     Route::get('/pengaduan-pelanggan', [PengaduanController::class, 'pengaduan_pelanggan'])->name('pengaduan.pelanggan');
+    Route::get('/detail-pengaduan/{id}', [PengaduanController::class, 'detail_pengaduan'])->name('pengaduan.detail');
+
 
     // Penilaian
-    Route::get('/penilaian', [PenilaianController::class, 'create'])->name('penilaian.create');
+    Route::get('/input-penilaian/{id}', [PenilaianController::class, 'create'])->name('penilaian.create');
     Route::post('/create-penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
 
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengaduan;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,13 @@ class PenilaianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('penilaian2');
+    public function create($id)
+    {   
+        $pengaduan = Pengaduan::with(['details', 'user'])->findOrFail($id);
+
+        return view('penilaian', [
+            'pengaduan' => $pengaduan
+        ]);
     }
 
     /**
@@ -43,7 +48,7 @@ class PenilaianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description' => 'required',
+            'keterangan' => 'required',
         ]);
 
         $id = Auth::user()->id;
@@ -59,7 +64,7 @@ class PenilaianController extends Controller
         
         Alert::success('Berhasil', 'Penilaian terkirim');
 
-        return redirect()->route('penilaian.create');
+        return redirect()->route('pengaduan.pelanggan');
     }
 
     /**

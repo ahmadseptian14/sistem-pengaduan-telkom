@@ -235,7 +235,7 @@
                             <a class="nav-link" aria-current="page" href="#tatacara">Tata Cara</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route('penilaian.create')}}">Beri Penilaian</a>
+                            <a class="nav-link" aria-current="page" href="{{route('pengaduan.pelanggan')}}">Lihat Pengaduan</a>
                         </li>
                     </ul>
                     @guest
@@ -386,10 +386,16 @@
                  <form action="{{route('pengaduan.store')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <div class="row">
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                              <label style="color: white">Lokasi</label>
+                              <input name="lokasi" cols="10" rows="5" class="form-control"></input>
+                          </div>
+                      </div>
                           <div class="col-md-12 mb-3">
                               <div class="form-group">
                                   <label style="color: white">Keterangan</label>
-                                  <textarea name="description" cols="10" rows="5" class="form-control"></textarea>
+                                  <textarea name="keterangan" cols="10" rows="5" class="form-control"></textarea>
                               </div>
                           </div>
                       </div>

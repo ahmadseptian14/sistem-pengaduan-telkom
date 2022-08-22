@@ -12,7 +12,7 @@ class Penilaian extends Model
 
 
     protected $fillable = [
-        'description',  'users_id'
+        'keterangan',  'users_id', 'pengaduans_id', 'rating'
     ];
 
     protected $hidden = [

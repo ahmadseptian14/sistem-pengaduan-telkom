@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Dewanda',
-                'email' => 'dewanda@gmail.com',
-                'password' => Hash::make('dewanda12345'),
+                'name' => 'Rama',
+                'email' => 'rama@gmail.com',
+                'password' => Hash::make('rama12345'),
                 'phone' => '0821221211',
                 'roles' => 'PELANGGAN'
             ],
@@ -29,7 +29,14 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admin12345'),
                 'phone' => '08965212177',
                 'roles' => 'ADMIN'
-            ]
+            ],
+            [
+                'name' => 'Teknisi',
+                'email' => 'teknisi@gmail.com',
+                'password' => Hash::make('teknisi12345'),
+                'phone' => '08965212121',
+                'roles' => 'TEKNISI'
+            ],
         ];
 
         DB::table('users')->insert($users);

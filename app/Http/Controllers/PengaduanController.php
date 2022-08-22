@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengaduan;
-use App\Models\Tanggapan;
-// use Barryvdh\DomPDF\PDF;
 use PDF;
+use App\Models\Pengaduan;
+// use Barryvdh\DomPDF\PDF;
+use App\Models\Penilaian;
+use App\Models\Tanggapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -46,17 +47,16 @@ class PengaduanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description' => 'required'
+            'keterangan' => 'required',
+            'lokasi' => 'required'
         ]);
 
-        $nik = Auth::user()->nik;
         $id = Auth::user()->id;
-        $name = Auth::user()->name;
+        $nama = Auth::user()->name;
 
         $data = $request->all();
-        $data['user_nik']= $nik;
         $data['user_id'] = $id;
-        $data['name'] = $name;
+        $data['nama'] = $nama;
 
         Alert::success('Berhasil', 'Pengaduan terkirim');
 
@@ -80,11 +80,32 @@ class PengaduanController extends Controller
             'details', 'user' 
         ])->findOrFail($id);
 
-        $tanggapan = Tanggapan::where('pengaduan_id',$id)->first();
+        $tanggapans = Tanggapan::where('pengaduan_id',$id)->orderBy('created_at', 'DESC')->get();
+
+        $penilaians = Penilaian::where('pengaduans_id', $id)->get();
 
         return view('pages.admin.pengaduan.detail',[
         'pengaduans' => $pengaduans,
-        'tanggapan' => $tanggapan
+        'tanggapans' => $tanggapans,
+        'penilaians' => $penilaians
+        
+        ]);
+    }
+
+    public function detail_pengaduan($id)
+    {
+        $pengaduans = Pengaduan::with([
+            'details', 'user',
+        ])->findOrFail($id);
+
+        $tanggapans = Tanggapan::where('pengaduan_id',$id)->orderBy('created_at', 'DESC')->get();
+
+        $penilaians = Penilaian::where('pengaduans_id', $id)->get();
+
+        return view('detail-pengaduan',[
+        'pengaduans' => $pengaduans,
+        'tanggapans' => $tanggapans,
+        'penilaians' => $penilaians
         ]);
     }
 
@@ -147,7 +168,7 @@ class PengaduanController extends Controller
     {
         $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
 
-        return view('pengaduan', [
+        return view('lihat-pengaduan', [
             'pengaduans' => $pengaduans
         ]);
     }

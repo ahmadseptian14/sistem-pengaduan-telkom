@@ -15,9 +15,10 @@ class CreatePengaduansTable extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
             $table->integer('user_id');
-            $table->text('description');
+            $table->string('lokasi');
+            $table->text('keterangan');
             $table->string('status')->default('Belum di Proses');
             $table->softDeletes();
             $table->timestamps();

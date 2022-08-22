@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -358,12 +358,25 @@
                  <form action="{{route('penilaian.store')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <div class="row">
+                        <input type="text" name="pengaduans_id" class="form-control" hidden value="{{$pengaduan->id}}">
                           <div class="col-md-12 mb-3">
                               <div class="form-group">
                                   <label style="color: white">Keterangan</label>
-                                  <textarea name="description" cols="10" rows="5" class="form-control"></textarea>
+                                  <textarea name="keterangan" cols="10" rows="5" class="form-control"></textarea>
                               </div>
                           </div>
+                          <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <label style="color: white">Rating</label>
+                                <select name="rating" id="" class="form-control rating">
+                                  <option value="1/5">1/5</option>
+                                  <option value="2/5">2/5</option>
+                                  <option value="3/5">3/5</option>
+                                  <option value="4/5">4/5</option>
+                                  <option value="5/5">5/5</option>
+                              </select>
+                            </div>
+                        </div>
                       </div>
                       <div class="row">
                           <div class="col text-right">

@@ -10,13 +10,14 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-
+    
     <li class="nav-item active">
         <a class="nav-link" href="{{route('pengaduan.index')}}">
             <i class="fas fa-fw fa-list"></i>
             <span>Lihat Data Pengaduan</span></a>
     </li>
 
+    @if (Auth::user()->roles == 'ADMIN')
     <li class="nav-item active">
         <a class="nav-link" href="{{route('cetak.form')}}">
             <i class="fas fa-fw fa-list"></i>
@@ -24,22 +25,12 @@
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{route('penilaian.index')}}">
-            <i class="fas fa-fw fa-list"></i>
-            <span>Lihat Data Penilaian</span></a>
-    </li>
-
-    {{-- <li class="nav-item active">
-        <a class="nav-link" href="{{route('petugas.index')}}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Kelola Data Petugas</span></a>
-    </li> --}}
-
-    <li class="nav-item active">
         <a class="nav-link" href="{{route('customer.index')}}">
             <i class="fas fa-fw fa-user"></i>
             <span>Kelola Data Pelanggan</span></a>
     </li>
+    @endif
+   
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

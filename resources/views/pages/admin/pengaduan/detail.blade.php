@@ -4,66 +4,87 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Detail Pengaduan</h2>
+            <h2 class="dashboard-title text-white">Detail Pengaduan</h2>
         </div>
         <div class="dashboard-content">
             <div class="row">
                 <div class="col-md-12">
                     @forelse ($pengaduans->details as $pengaduan)
-                    <div class="card mb-5">
-                        <div class="card-body">
-                            <div>
-                                <h4>Nama : {{$pengaduan->name}}</h4>
-                                {{-- <h4>NIK : {{$pengaduan->user_nik}}</h4> --}}
-                                <h4>No.Telepon : {{$pengaduan->user->phone}}</h4>
-                                <h4>Tanggal : {{ $pengaduan->created_at->format('l, d F Y - H:i:s') }}</h4>
-                                <h4>Status : 
-                                    @if($pengaduan->status =='Belum di Proses')
-                                    <span class="badge badge-pill badge-danger">{{$pengaduan->status}}</span>
-
-                                    @elseif ($pengaduan->status =='Sedang di Proses')
-                                    <span class="badge badge-pill badge-primary">{{$pengaduan->status}}</span>
-                                    @else
-
-                                    <span
-                                    <span class="badge badge-pill badge-success">{{$pengaduan->status}}</span>
-                                    @endif
-                                </h4>
+                        <div class="card mb-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h4>Nama : {{ $pengaduan->nama }}</h4>
+                                        <h4>Lokasi : {{ $pengaduan->lokasi }}</h4>
+                                        <h4>No.Telepon : {{ $pengaduan->user->phone }}</h4>
+                                        <h4>Tanggal : {{ $pengaduan->created_at->format('d-m-Y - H:i:s') }}</h4>
+                                    </div>
+                                </div>
                             </div>
-                          
                         </div>
-                    </div>
+                </div>
 
-                    <h4 class="text-center" style="font-weight: bold">Keterangan</h4>
-                    <div class="card mb-5">
+                <div class="col-md-12">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <div>
-                                <p>{{$pengaduan->description}}</p>
+                                <h3 class="text-center">Keterangan</h3>
+                                <p>{{ $pengaduan->keterangan }}</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <h4 class="text-center" style="font-weight: bold">Tanggapan</h4>
-                    <div class="card mb-5">
+                <div class="col-md-12">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <div>
-                               
-                                @if (empty($tanggapan->tanggapan))
-                                Belum ada tanggapan
-                                @else
-                                {{ $tanggapan   ->tanggapan}}
-                                @endif
+                                <h3 class="text-center">Status Pengaduan</h3>
+                                <div class="list-group">
+                                    @forelse ($tanggapans as $tanggapan)
+                                        <div class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">{{ $tanggapan->status_pengaduan }}</h5>
+                                                <small>{{ $tanggapan->created_at }}</small>
+                                            </div>
+                                            <p class="mb-1">{{ $tanggapan->tanggapan }}</p>
+                                        </div>
+                                    @empty
+                                        <p>Belum di proses dan belum ada tanggapan</p>
+                                    @endforelse
+                                </div>
                             </div>
-                            @empty
+                        @empty
                             <h2>Tidak Ada Pengaduan</h2>
                         </div>
                     </div>
-                    @endforelse
                 </div>
+                
+                @endforelse
             </div>
-            <a href="{{route('tanggapan.show', $pengaduan->id)}}" class="btn btn-primary btn-lg active">Berikan Tanggapan</a>
+        </div>
+        
+        
+    </div>
+    <div class="col-md-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="text-center">Penilaian</h3>
+                @forelse ($penilaians as $penilaian)
+                <div>
+                    <p>Komentar : {{$penilaian->keterangan}}</p>
+                    <p>Rating : {{$penilaian->rating}}</p>
+                </div>
+                @empty
+                    
+                @endforelse
+               
+            </div>
         </div>
     </div>
+    @if (Auth::user()->roles == 'TEKNISI')
+    <a href="{{ route('tanggapan.show', $pengaduan->id) }}" class="btn btn-primary btn-lg active mb-5">Berikan Tanggapan</a>   
+    @endif
 </div>
 @endsection
 

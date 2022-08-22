@@ -41,7 +41,7 @@ class TanggapanController extends Controller
     public function store(Request $request)
     {
         DB::table('pengaduans')->where('id', $request->pengaduan_id)->update([
-            'status' => $request->status
+            'status' => null,
         ]);
 
         $petugas_id = Auth::user()->id;
