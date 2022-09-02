@@ -15,6 +15,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div>
+                                <a href="{{ route('customer.create') }}"
+                                    class="btn btn-info btn mb-2"><i class="fa fa-message"
+                                        style="margin-right: 5px"></i>Tambah Pelanggan</a>
                                 <table
                                     class="table table-hover scroll-horizontal-vertical w-100 table-bordered table-striped"
                                     id="table1">

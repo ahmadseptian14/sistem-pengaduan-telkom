@@ -7,6 +7,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\TanggapanController;
+use App\Http\Controllers\SmsController;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -64,12 +65,18 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     // customer
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/create-customer', [CustomerController::class, 'create'])->name('customer.create');
+    Route::post('/create-customer-store', [CustomerController::class, 'store'])->name('customer.store');
     Route::get('/edit-customer/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::put('/edit-customer/{id}', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customer-delete/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 
     //Penialain
     Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+
+    //SMS
+    Route::get('/sms/{id}', [SmsController::class, 'create'])->name('sms.create');
+    Route::post('/send-sms', [SmsController::class, 'store'])->name('sms.store');
 });
 
 

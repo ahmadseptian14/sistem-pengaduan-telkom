@@ -166,7 +166,7 @@ class PengaduanController extends Controller
 
     public function pengaduan_pelanggan()
     {
-        $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+        $pengaduans = Pengaduan::with(['tanggapan', 'user'])->where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
 
         return view('lihat-pengaduan', [
             'pengaduans' => $pengaduans

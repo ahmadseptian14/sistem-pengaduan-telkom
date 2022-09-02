@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -31,7 +32,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.customer.create');
     }
 
     /**
@@ -42,7 +43,29 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+            'roles' => 'required|string',
+            'phone' => 'required'
+            ]);
+            
+            $user = $request->all();
+            
+            $roles = 'PELANGGAN';
+
+            $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'roles' => $roles,
+            'password' => Hash::make($request->password),
+            
+            ]);
+            
+            Alert::success('Berhasil', 'Pelanggan baru berhasil ditambahkan');
+            return redirect()->route('customer.index');
     }
 
     /**

@@ -433,8 +433,13 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('penilaian.create', $pengaduan->id) }}" class="btn btn-primary btn-lg active mb-5">Berikan
-                Penilaian</a>   
+            @foreach ($tanggapans as $tanggapan)
+                @if ($tanggapan->status_pengaduan == 'Selesai')
+                <a href="{{ route('penilaian.create', $pengaduan->id) }}" class="btn btn-primary btn-lg active mb-5">Berikan
+                    Penilaian</a>   
+                @endif
+            @endforeach
+            
         </div>
         @endauth
      
