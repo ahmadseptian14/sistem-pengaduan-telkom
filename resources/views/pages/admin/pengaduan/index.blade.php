@@ -15,7 +15,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    
                                     <table
                                         class="table table-hover scroll-horizontal-vertical w-100 table-bordered table-striped"
                                         id="table1">

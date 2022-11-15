@@ -8,7 +8,6 @@
 </div>
     <!-- Content Row -->
     <div class="row">
-        
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -86,4 +85,83 @@
             </div>
         </div>
     </div>
+
+    <div class="row mt-5">
+        <div class="dashboard-heading">
+            <h2 class="dashboard-title">Grafik Penilaian</h2>
+        </div>  
+    </div>
+
+    {{-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Element", "Jumlah", { role: "style" } ],
+          ["1/5", {{$satu}}, "#b87333"],
+          ["2/5", {{$dua}}, "silver"],
+          ["3/5", {{$tiga}}, "gold"],
+          ["4/5", {{$empat}}, "color: #e5e4e2"]
+        //   ["5/5", {{$lima}}, "color: #e5e4e2"]
+
+        ]);
+  
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                         { calc: "stringify",
+                           sourceColumn: 1,
+                           type: "string",
+                           role: "annotation" },
+                         2]);
+  
+        var options = {
+          title: "Grafik Status Pengaduan",
+          width: 600,
+          height: 400,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+    }
+    </script>
+  <div id="columnchart_values" style="width: 900px; height: 500px;"></div> --}}
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawStuff);
+
+    function drawStuff() {
+      var data = new google.visualization.arrayToDataTable([
+        ['Move', 'Jumlah'],
+        ["1/5", {{$satu}}],
+        ["2/5", {{$dua}}],
+        ["3/5", {{$tiga}}],
+        ["4/5", {{$empat}}],
+        ['5/5', {{$lima}}]
+      ]);
+
+      var options = {
+        width: 800,
+        legend: { position: 'none' },
+        // chart: {
+        //   title: 'Chess opening',
+        //   subtitle: 'popularity by percentage' },
+        axes: {
+          x: {
+            0: { side: 'top', label: 'Grafik Penilaian'} // Top x-axis.
+          }
+        },
+        bar: { groupWidth: "90%" }
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+      // Convert the Classic options to Material options.
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+  </script>
+  <div id="top_x_div" style="width: 800px; height: 600px;"></div>
 @endsection
+

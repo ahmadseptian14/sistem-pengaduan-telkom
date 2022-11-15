@@ -20,13 +20,24 @@ class DashboardController extends Controller
         $penilaian = Penilaian::count();
         $petugas = User::where('roles', 'ADMIN')->count();
         $customer = User::where('roles', 'USER')->count();
+        $satu = Penilaian::where('rating', '1/5')->count();
+        $dua = Penilaian::where('rating', '2/5')->count();
+        $tiga = Penilaian::where('rating', '3/5')->count();
+        $empat = Penilaian::where('rating', '4/5')->count();
+        $lima = Penilaian::where('rating', '5/5')->count();
+
 
 
         return view('pages.admin.dashboard', [
             'pengaduan' => $pengaduan,
             'penilaian' => $penilaian,
             'petugas' => $petugas,
-            'customer' => $customer
+            'customer' => $customer,
+            'satu' => $satu,
+            'dua' => $dua,
+            'tiga' => $tiga,
+            'empat' => $empat,
+            'lima' => $lima
         ]);
     }
 

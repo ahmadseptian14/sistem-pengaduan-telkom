@@ -25,7 +25,7 @@
       <thead class="thead">
         <tr>
           <th scope="col">No</th>
-          <th scope="col">NIK</th>
+          {{-- <th scope="col">NIK</th> --}}
           <th scope="col">Nama</th>
           <th scope="col">Pengaduan</th>
           <th scope="col">Tanggal</th>
@@ -34,15 +34,13 @@
       </thead>
       <tbody>
         @foreach($pengaduans as $pengaduan)
-          
         <tr>
           <td>{{$loop->iteration}} </td>
-          <td>{{ $pengaduan->user_nik }}</td>
-          <td>{{ $pengaduan->name }}</td>
-          <td>{{ $pengaduan->description }}</td>
+          {{-- <td>{{ $pengaduan->user_nik }}</td> --}}
+          <td>{{ $pengaduan->user->name }}</td>
+          <td>{{ $pengaduan->keterangan }}</td>
           <td>{{ $pengaduan->created_at->format('l, d F Y') }}</td>
           <td>{{ $pengaduan->status }}</td>
-
         </tr>
         @endforeach
       </tbody>

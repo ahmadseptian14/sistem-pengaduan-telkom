@@ -243,13 +243,13 @@
                         <li class="nav-item my-auto text-center login">
                             <a class="nav-link cl-white mb-3 mb-md-0" aria-current="page" href="{{route('login')}}">Log in</a>
                         </li>
-                        {{-- <li class="nav-item me-0 text-center">
+                        <li class="nav-item me-0 text-center">
                             <a class="nav-link signup" href="{{route('register')}}">
                                 Register <span class="ms-2"><img
                                         src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content10/dark/arrow-right.png"
                                         alt="arrow" class="img-fluid"></span>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                     @endguest
                     @auth
