@@ -20,7 +20,7 @@ class PengaduanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $pengaduans = Pengaduan::orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.pengaduan.index', [
@@ -65,7 +65,6 @@ class PengaduanController extends Controller
 
 
         return redirect()->route('home');
-
     }
 
     /**
@@ -77,18 +76,18 @@ class PengaduanController extends Controller
     public function show($id)
     {
         $pengaduans = Pengaduan::with([
-            'details', 'user' 
+            'details', 'user'
         ])->findOrFail($id);
 
-        $tanggapans = Tanggapan::where('pengaduan_id',$id)->orderBy('created_at', 'DESC')->get();
+        $tanggapans = Tanggapan::where('pengaduan_id', $id)->orderBy('created_at', 'DESC')->get();
 
         $penilaians = Penilaian::where('pengaduans_id', $id)->get();
 
-        return view('pages.admin.pengaduan.detail',[
-        'pengaduans' => $pengaduans,
-        'tanggapans' => $tanggapans,
-        'penilaians' => $penilaians
-        
+        return view('pages.admin.pengaduan.detail', [
+            'pengaduans' => $pengaduans,
+            'tanggapans' => $tanggapans,
+            'penilaians' => $penilaians
+
         ]);
     }
 
@@ -98,14 +97,14 @@ class PengaduanController extends Controller
             'details', 'user',
         ])->findOrFail($id);
 
-        $tanggapans = Tanggapan::where('pengaduan_id',$id)->orderBy('created_at', 'DESC')->get();
+        $tanggapans = Tanggapan::where('pengaduan_id', $id)->orderBy('created_at', 'DESC')->get();
 
         $penilaians = Penilaian::where('pengaduans_id', $id)->get();
 
-        return view('detail-pengaduan',[
-        'pengaduans' => $pengaduans,
-        'tanggapans' => $tanggapans,
-        'penilaians' => $penilaians
+        return view('detail-pengaduan', [
+            'pengaduans' => $pengaduans,
+            'tanggapans' => $tanggapans,
+            'penilaians' => $penilaians
         ]);
     }
 
@@ -150,17 +149,16 @@ class PengaduanController extends Controller
 
 
 
-    public function cetakLaporan (Request $request) 
+    public function cetakLaporan(Request $request)
     {
-      
-        if(isset($_GET['cari'])) {
-            $pengaduans = Pengaduan::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
-            
-            $pdf = PDF::loadview('pages.admin.pengaduan.exportAll',compact('pengaduans'));
-            return $pdf->download('laporan-semua-pengaduan.pdf');
 
+        if (isset($_GET['cari'])) {
+            $pengaduans = Pengaduan::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+
+            $pdf = PDF::loadview('pages.admin.pengaduan.exportAll', compact('pengaduans'));
+
+            return $pdf->download('laporan-semua-pengaduan.pdf');
         }
-       
     }
 
 
@@ -172,11 +170,4 @@ class PengaduanController extends Controller
             'pengaduans' => $pengaduans
         ]);
     }
-
-
-    
-    
-
-
-
 }

@@ -15,11 +15,11 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $pengaduan = Pengaduan::count();
         $penilaian = Penilaian::count();
         $petugas = User::where('roles', 'ADMIN')->count();
-        $customer = User::where('roles', 'USER')->count();
+        $customer = User::where('roles', 'PELANGGAN')->count();
         $satu = Penilaian::where('rating', '1/5')->count();
         $dua = Penilaian::where('rating', '2/5')->count();
         $tiga = Penilaian::where('rating', '3/5')->count();

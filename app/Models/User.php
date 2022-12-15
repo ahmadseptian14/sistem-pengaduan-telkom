@@ -23,6 +23,7 @@ class User extends Authenticatable
         'phone',
         'roles',
         'password',
+        'nomor_pelanggan'
     ];
 
     /**

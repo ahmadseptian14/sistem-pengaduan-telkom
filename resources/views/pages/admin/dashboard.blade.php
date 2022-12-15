@@ -33,7 +33,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Penilaian</div>
+                                Keseluruhan Penilaian</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$penilaian}}</div>
                         </div>
                         <div class="col-auto">
@@ -74,7 +74,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                               Customer</div>
+                               Pelanggan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$customer}}</div>
                         </div>
                         <div class="col-auto">
@@ -88,8 +88,47 @@
 
     <div class="row mt-5">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Grafik Penilaian</h2>
-        </div>  
+            <h2 class="dashboard-title">Kepuasan Pelanggan</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                   Ada {{$satu}} Pelanggan yang merasa tidak puas dengan pelayanan
+                    {{-- <div class="text-white-50 small">#4e73df</div> --}}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    Ada {{$dua}} Pelanggan yang merasa kurang puas dengan pelayanan
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card bg-info text-white shadow">
+                <div class="card-body">
+                    Ada {{$tiga}} Pelanggan yang merasa cukup dengan pelayanan
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card bg-warning text-white shadow">
+                <div class="card-body">
+                    Ada {{$empat}} Pelanggan yang merasa puas dengan pelayanan
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    Ada {{$lima}} Pelanggan yang merasa sangat puas dengan pelayanan
+                </div>
+            </div>
+        </div>
     </div>
 
     {{-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -106,7 +145,7 @@
         //   ["5/5", {{$lima}}, "color: #e5e4e2"]
 
         ]);
-  
+
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
                          { calc: "stringify",
@@ -114,7 +153,7 @@
                            type: "string",
                            role: "annotation" },
                          2]);
-  
+
         var options = {
           title: "Grafik Status Pengaduan",
           width: 600,
@@ -164,4 +203,3 @@
   </script>
   <div id="top_x_div" style="width: 800px; height: 600px;"></div>
 @endsection
-
